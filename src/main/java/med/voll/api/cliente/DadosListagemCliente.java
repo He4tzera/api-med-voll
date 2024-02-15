@@ -2,9 +2,9 @@ package med.voll.api.cliente;
 
 
 
-public record DadosListagemCliente(String nome, String email, String cpf) {
+public record DadosListagemCliente(Long id , String nome, String email, String cpf) {
 
     public DadosListagemCliente(Cliente cliente) {
-        this(cliente.getNome(), cliente.getEmail(), cliente.getCpf());
+        this(cliente.getId(), cliente.getNome(), cliente.getEmail(), cliente.getCpf());
     }
 }
