@@ -2,10 +2,8 @@ package med.voll.api.controller;
 
 
 import jakarta.validation.Valid;
-import med.voll.api.cliente.Cliente;
-import med.voll.api.cliente.ClienteRepository;
-import med.voll.api.cliente.DadosCadastroCliente;
-import med.voll.api.cliente.DadosListagemCliente;
+import med.voll.api.cliente.*;
+import med.voll.api.medico.DadosAtualizarMedico;
 import med.voll.api.medico.MedicoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -28,5 +26,12 @@ public class ClienteController {
     @GetMapping
     public Page<DadosListagemCliente> listar(@PageableDefault(size = 10, sort = {"nome"}) Pageable paginacao){
         return repository.findAll(paginacao).map(DadosListagemCliente::new);
+    }
+
+    @PutMapping
+    @Transactional
+    public void atulizar(@RequestBody @Valid DadosAtualizarCliente dados){
+        var cliente = repository.getReferenceById(dados.id());
+        cliente.atualizar(dados);
     }
 }

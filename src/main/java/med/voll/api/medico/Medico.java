@@ -20,6 +20,7 @@ public class Medico {
     private String email;
     private String telefone;
     private String crm;
+    private Boolean ativo;
     @Enumerated(EnumType.STRING)
     private Especialidades especialidades;
     @Embedded
@@ -30,15 +31,14 @@ public class Medico {
         this.telefone = dados.telefone();
         this.email = dados.email();
         this.crm = dados.crm();
+        this.ativo = true;
         this.especialidades = dados.especialidade();
         this.endereco = new Endereco(dados.endereco());
 
     }
-
     public void atualizar(DadosAtualizarMedico dados) {
         if(dados.nome() !=null){
             this.nome = dados.nome();
-
         }
         if(dados.telefone() !=null){
             this.telefone = dados.telefone();
@@ -46,7 +46,8 @@ public class Medico {
         if(dados.endereco() !=null){
             this.endereco.atualizarInformacoes(dados.endereco());
         }
-
-
+    }
+    public void excluir() {
+        this.ativo = false;
     }
 }

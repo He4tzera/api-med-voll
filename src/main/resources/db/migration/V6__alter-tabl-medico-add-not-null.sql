@@ -1,1 +1,0 @@
-ALTER TABLE medicos ALTER COLUMN ativos SET NOT NULL;
