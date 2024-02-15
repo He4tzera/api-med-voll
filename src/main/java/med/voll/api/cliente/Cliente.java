@@ -24,6 +24,8 @@ public class Cliente{
 
     private String cpf;
 
+    private Boolean ativo;
+
     private String telefone;
     @Embedded
     private Endereco endereco;
@@ -32,6 +34,7 @@ public class Cliente{
         this.nome = dados.nome();
         this.email = dados.email();
         this.cpf = dados.cpf();
+        this.ativo = true;
         this.telefone = dados.telefone();
         this.endereco = new Endereco(dados.endereco());
 
@@ -49,6 +52,9 @@ public class Cliente{
         }
     }
 
+    public void excluir() {
+        this.ativo = false;
+    }
 }
 
 
